@@ -1,2 +1,6 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
-/* @import './styles/bootstrap-3.3.7-dist/css/bootstrap.min.css'; */
+@import '~font-awesome/css/font-awesome.min.css';
+
+body {
+    background-color: rgb(114, 150, 204);
+}

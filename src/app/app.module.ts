@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { TodoListComponent } from '../app/todo-list/lists/todo-list.component';
 import { TodoInputComponent } from '../app/todo-list/input/todo-input.component';
 import { WrapComponent } from '../app/todo-list/wrap/wrap.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { WrapComponent } from '../app/todo-list/wrap/wrap.component';
     WrapComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

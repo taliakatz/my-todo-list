@@ -1,5 +1,25 @@
-<div>
-    {{ pageTitle }}
+<div class="card" id="main-container">
+    <div class="card-header" style="background-color: rgb(150, 181, 228);">
+        <h2 style="color: white;"> {{pageTitle}} </h2>
+    </div>
+    <div class="card-body" style="background-color: rgb(114, 150, 204);">
+        <div class="container-fluid container-md">
+            <div class="text-center">
+                <app-todo-input (task)='onSubmitClicked($event)'></app-todo-input>
+            </div>
+            <div class="text-center">
+                <app-todo-list [todoListIn]="todoListOut" [completedListIn]="completedListOut"
+                                (completedTask)='onCheckClicked($event)'
+                                (uncompletedTask)='onUnCheckedClicked($event)'
+                                (deletedTask)='onDeletingClicked($event)'
+                                (update)='onUpdate($event)'></app-todo-list>
+            </div>
+        </div>
+    </div>
 </div>
-<app-todo-list [todoListIn]="todoListOut" [completedListIn]="completedListOut"></app-todo-list>
-<app-todo-input></app-todo-input>
+
+
+
+
+
+

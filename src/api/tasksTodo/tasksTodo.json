@@ -1,0 +1,20 @@
+[
+  {"userId": 1,
+  "taskList": 
+    [{
+      "taskDescription" : "bla",
+      "completed" : false,
+      "editable": false
+    },
+    {
+      "taskDescription" : "bla2",
+      "completed" : false,
+      "editable": false
+    },
+    {
+      "taskDescription" : "bla3",
+      "completed" : false,
+      "editable": false
+    }]
+  }
+]

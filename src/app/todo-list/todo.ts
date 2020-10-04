@@ -1,5 +1,5 @@
 export interface Itodo {
-    todoId: number;
-    todoTitle: string;
+    taskDescription: string;
     completed: boolean;
+    editable: boolean;
 }

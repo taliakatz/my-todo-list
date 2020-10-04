@@ -1,4 +1,16 @@
-<div>
-    <input type="text"/>
-    <input class="btn btn-primary" type="submit" value="Submit">
+<div class="input-group mb-3" id="new-task-input">
+    <div id="input-container">
+        <input type="text" class="form-control"
+                    [(ngModel)]='taskInput'
+                    placeholder="Add a new task..." 
+                    aria-label="New task" aria-describedby="button-addon2"/>
+    </div>
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary font-weight-bolder" type="submit" id="button-addon2" 
+              (click)=onSubmitTask()>+</button>
+    </div>
 </div>
+
+
+
+

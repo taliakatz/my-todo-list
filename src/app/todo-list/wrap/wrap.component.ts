@@ -12,33 +12,54 @@ export class WrapComponent implements OnInit {
 
   @Output() todoListOut: Itodo[] = [
     {
-      todoId : 1,
-      todoTitle : "bla",
-      completed : false
+      taskDescription : "bla",
+      completed : false,
+      editable: false
     },
     {
-      todoId : 2,
-      todoTitle : "bla2",
-      completed : false
+      taskDescription : "bla2",
+      completed : false,
+      editable: false
+    },
+    {
+      taskDescription : "bla3",
+      completed : false,
+      editable: false
     }
   ];
 
-  @Output() completedListOut: Itodo[] = [
-    {
-      todoId : 3,
-      todoTitle : "bla3",
-      completed : false
-    },
-    {
-      todoId : 4,
-      todoTitle : "bla4",
-      completed : false
-    }
-  ];
+  @Output() completedListOut: Itodo[] = [];
   
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSubmitClicked(newTask: Itodo){
+    this.todoListOut.push(newTask); 
+  }
+
+  onCheckClicked(task: Itodo) {
+    this.completedListOut.push(task);
+    this.todoListOut.splice(this.todoListOut.indexOf(task), 1);
+  }
+
+  onUnCheckedClicked(task: Itodo) {
+    this.todoListOut.push(task);
+    this.completedListOut.splice(this.completedListOut.indexOf(task), 1);
+  }
+  
+  onDeletingClicked(task: Itodo) {
+    let index = this.completedListOut.indexOf(task);
+    if (index !== -1) {
+      this.completedListOut.splice(this.completedListOut.indexOf(task), 1);
+    } else {
+      this.todoListOut.splice(this.todoListOut.indexOf(task), 1);
+    }
+  }
+
+  onUpdate(desc: string) {
+    console.log(desc);
   }
 
 }

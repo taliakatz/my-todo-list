@@ -1,26 +1,64 @@
-<div>
-  <h4>TODO</h4>
-  <table class="table table-striped">
-    <tbody>
-      <tr *ngFor='let item of todoListIn'>
-        <th>{{ item.todoTitle }}</th>
-        <td><button>check</button></td>
-        <td><button>edit</button></td>
-        <td><button>delete</button></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<div class='card text-left'>
+    <div class='card-header'>
+      Tasks
+    </div>
+    <div class='card-body'>
+        <div class='table-responsive table-editable'>
+            <table class='table'>
+                <tbody>
+                    <tr *ngFor='let item of todoListIn;  let id = index'>
+                        <td>
+                            <input type="checkbox" (click)='checkingTask(item)'/>
+                        </td>
+                        <td class="col-md-6">
+                            <input *ngIf="item.editable" type="text" class="form-control"
+                                [(ngModel)]='item.taskDescription'
+                                aria-label="Edited task" aria-describedby="button-addon2"/>
+                                <div *ngIf="!item.editable"> {{item.taskDescription}}  </div>                            
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-light" (click)="editTask(item)">{{editSaveButton}}</button>
+                        </td>
+                        <td>
+                            <button type="button" class="close" aria-label="Close">
+                                <span aria-hidden="true" (click)="deletingTask(item)">×</span>
+                            </button>                   
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
 
-<div>
-  <h4>Completed</h4>
-  <table class="table table-striped">
-    <tbody>
-      <tr *ngFor='let item of completedListIn'>
-        <th>{{ item.todoTitle }}</th>
-        <td><button>check</button></td>
-        <td><button>delete</button></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div class='card text-left' style="margin-top: 20px;">
+    <div class='card-header text-left'>
+        Completed
+    </div>
+    <div class='card-body'>
+        <div class='table-responsive'>
+            <table class='table'>
+                <tbody>
+                    <tr *ngFor='let item of completedListIn'>
+                        <td>
+                            <input type="checkbox" [checked]="!item.Completed" (click)='uncheckingTask(item)'/>
+                        </td>
+                        <td class="col-md-10"> 
+                            <span contenteditable="true">
+                                  {{item.taskDescription}}
+                            </span>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-light">edit</button>
+                        </td>
+                        <td>
+                            <button type="button" class="close" aria-label="Close">
+                                <span aria-hidden="true" (click)="deletingTask(item)">×</span>
+                            </button> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
