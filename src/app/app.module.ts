@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { TodoListComponent } from '../app/todo-list/lists/todo-list.component';
 import { TodoInputComponent } from '../app/todo-list/input/todo-input.component';
 import { WrapComponent } from '../app/todo-list/wrap/wrap.component';
 import { FormsModule } from '@angular/forms';
+import { ToDoService } from './todo-list/todo-list.service';
 
 @NgModule({
   declarations: [
@@ -16,9 +18,10 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ToDoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

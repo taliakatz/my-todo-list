@@ -15,18 +15,22 @@ export class TodoInputComponent implements OnInit {
     return this._taskInput;
   }
   set taskInput(value: string) {
-    if (value === '' ) {
-         return;
+    if (value === '') {
+      return;
     }
-    
-    this._taskInput = value;   
+
+    this._taskInput = value;
   }
 
   onSubmitTask() {
     if (this._taskInput !== '') {
-      this.task.emit({ taskDescription: this._taskInput,
-                      completed: false,
-                      editable: false });
+      this.task.emit({
+        taskDescription: this._taskInput,
+        completed: false,
+        editable: false,
+        dateCreated: new Date(),
+        id: '1'
+      });
     }
   }
 

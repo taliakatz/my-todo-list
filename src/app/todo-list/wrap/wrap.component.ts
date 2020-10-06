@@ -1,5 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Itodo } from '../todo';
+import { ToDoService } from '../todo-list.service';
 
 @Component({
   selector: 'app-wrap',
@@ -12,31 +13,47 @@ export class WrapComponent implements OnInit {
 
   @Output() todoListOut: Itodo[] = [
     {
-      taskDescription : "bla",
-      completed : false,
-      editable: false
+      id: '111aaa',
+      taskDescription: "bla",
+      completed: false,
+      editable: false,
+      dateCreated: new Date()
     },
     {
-      taskDescription : "bla2",
-      completed : false,
-      editable: false
+      id: 'b',
+      taskDescription: "bla2",
+      completed: false,
+      editable: false,
+      dateCreated: new Date()
     },
     {
-      taskDescription : "bla3",
-      completed : false,
-      editable: false
+      id: 'c3',
+      taskDescription: "bla3",
+      completed: false,
+      editable: false,
+      dateCreated: new Date()
     }
   ];
 
   @Output() completedListOut: Itodo[] = [];
-  
-  constructor() { }
+
+  constructor(private service: ToDoService) { }
 
   ngOnInit(): void {
+    this.getTasks();
   }
 
-  onSubmitClicked(newTask: Itodo){
-    this.todoListOut.push(newTask); 
+  getTasks() {
+    //for test only
+    this.service.getTasks('5f7bbf81a9c111c0e75fbd96')
+      .subscribe(data => {
+        //this.tasks = data;
+        console.log('tasks', data);
+      }, err => console.log('error', err));
+  }
+
+  onSubmitClicked(newTask: Itodo) {
+    this.todoListOut.push(newTask);
   }
 
   onCheckClicked(task: Itodo) {
@@ -48,7 +65,7 @@ export class WrapComponent implements OnInit {
     this.todoListOut.push(task);
     this.completedListOut.splice(this.completedListOut.indexOf(task), 1);
   }
-  
+
   onDeletingClicked(task: Itodo) {
     let index = this.completedListOut.indexOf(task);
     if (index !== -1) {
