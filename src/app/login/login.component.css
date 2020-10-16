@@ -1,0 +1,15 @@
+.field-error {
+    border: 1px solid red;
+}
+
+#main-container {
+    background-color: rgb(114, 150, 204);
+    border: none;
+    box-sizing: border-box;
+    margin-left: 250px;
+    margin-top: 20px;
+}
+
+.card-body{
+    background-color: rgb(183, 208, 245);
+}

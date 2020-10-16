@@ -1,0 +1,44 @@
+<div class="card col-sm-6" id="main-container">
+    <form #form="ngForm">  
+        <div class="card-header" style="background-color: rgb(150, 181, 228);">
+            <h2 style="color: white;">Login</h2>
+        </div>      
+        <div class="card-body">
+            <div class="container-fluid container-md">
+                <div class="form-group">
+                    <input id="email" name="email" class="form-control" placeholder='Enter an email' [(ngModel)]="emailInput"
+                        required #nameField="ngModel"
+                        [class.field-error]="(form.submitted && nameField.invalid) || wrongEmail"
+                        required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+                        required minlength="3"/>
+                    <div [hidden]="!form.submitted || nameField.valid" class="alert alert-danger">
+                        Enter a valid email
+                    </div>    
+                    <div [hidden]="!wrongEmail" class="alert alert-danger">
+                        Wrong email
+                    </div>
+                </div>
+                  
+                <div class="form-group">
+                    <input class="form-control" id="password" name="password" placeholder='Enter a password' [(ngModel)]="passwordInput"
+                        required #nameField2="ngModel"
+                        [class.field-error]="(form.submitted && nameField2.invalid) || wrongPassword"/>
+                        <div [hidden]="!form.submitted || nameField2.valid" class="alert alert-danger">
+                            Enter a valid password
+                        </div> 
+                        <div [hidden]="!wrongPassword" class="alert alert-danger">
+                            Wrong password
+                        </div>
+                </div>
+                <div>
+                    <a *ngIf="nameField.valid && nameField2.valid" (click)="onLogin()"> 
+                        <button class="btn btn-primary">Login</button>
+                    </a>
+                    <button *ngIf="!nameField.valid || !nameField2.valid" class="btn btn-primary">Login</button>
+                </div> 
+            </div>
+        </div>
+    </form>
+</div>
+
+

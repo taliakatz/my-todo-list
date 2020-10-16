@@ -1,12 +1,17 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Itodo } from '../todo';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
+
+  editedTask = '';
+  closeResult: string;
 
   @Input() todoListIn: Itodo[];
   @Input() completedListIn: Itodo[];
@@ -16,45 +21,9 @@ export class TodoListComponent implements OnInit {
   @Output() deletedTask: EventEmitter<Itodo> = new EventEmitter<Itodo>();
   @Output() update: EventEmitter<string> = new EventEmitter<string>();
 
-  editSaveButton = 'edit';
-
-  // editedTask = '';
-  // get taskEdit(): string {
-  //   return this.editedTask;
-  // }
-  // set taskEdit(value: string) {
-  //   if (value !== '' ) {
-  //     this.editedTask = value; 
-  //   }
-  // }
-
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void { }
-
-  // jumpLists(item: Itodo): void {
-
-  //   console.log(item.taskDescription);
-
-  //   item.completed = !item.completed;
-  //   if (item.completed) {
-  //     this.todoListIn.splice(this.todoListIn.indexOf(item), 1);  
-  //     this.completedListIn.push(item);   
-  //   } else {
-  //     this.completedListIn.splice(this.completedListIn.indexOf(item), 1);  
-  //     this.todoListIn.push(item);    
-  //   }
-  // }
-
-  // deleteTask(item: Itodo) {     
-
-  //   if (this.completedListIn.indexOf(item) !== -1) {
-  //     this.completedListIn.splice(this.completedListIn.indexOf(item), 1);
-  //   } else {
-  //     this.todoListIn.splice(this.todoListIn.indexOf(item), 1)
-  //   } 
-  // }
-
 
   checkingTask(task: Itodo) {
     this.completedTask.emit(task);
@@ -67,21 +36,25 @@ export class TodoListComponent implements OnInit {
   deletingTask(task: Itodo) {
     this.deletedTask.emit(task);
   }
-
   
-  editTask(item: Itodo) {
-    if (item.editable) { //save
-      this.editSaveButton = 'edit';
+  openModal(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-edit-task'}).result.then(
+      (item: Itodo) => {
+        item.taskDescription = this.editedTask;
+        this.editedTask = ''; 
+      },
+      (reason) => this.closeResult = `Dismissed ${this.getDismissReason(reason)}`
+    );
+  }
+
+  getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
     } else {
-      this.editSaveButton = 'save';
-      console.log(this.todoListIn);
+      return `with: ${reason}`;
     }
-    item.editable = !item.editable;
   }
-
-  updateList(id: number, description: string, event: any) {
-    this.update.emit(event);
-  }
-  
 }
 

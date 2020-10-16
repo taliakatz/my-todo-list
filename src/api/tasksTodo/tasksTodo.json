@@ -1,20 +1,17 @@
 [
-  {"userId": 1,
-  "taskList": 
-    [{
-      "taskDescription" : "bla",
-      "completed" : false,
-      "editable": false
-    },
-    {
-      "taskDescription" : "bla2",
-      "completed" : false,
-      "editable": false
-    },
-    {
-      "taskDescription" : "bla3",
-      "completed" : false,
-      "editable": false
-    }]
+  {
+    "taskDescription" : "fix the lamp in bedroom",
+    "completed" : false,
+    "editable": false
+  },
+  {
+    "taskDescription" : "buy milk",
+    "completed" : false,
+    "editable": false
+  },
+  {
+    "taskDescription" : "call grandma",
+    "completed" : false,
+    "editable": false
   }
 ]

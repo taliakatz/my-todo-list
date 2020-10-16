@@ -1,22 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
-import { TodoListComponent } from '../app/todo-list/lists/todo-list.component';
-import { TodoInputComponent } from '../app/todo-list/input/todo-input.component';
-import { WrapComponent } from '../app/todo-list/wrap/wrap.component';
-import { FormsModule } from '@angular/forms';
+// import { FormsModule } from '@angular/forms';
+import { TodoListModule } from './todo-list/todo-list.module';
+import { AppRoutingModule } from './app-routing.module';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TodoListComponent,
-    TodoInputComponent,
-    WrapComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    // FormsModule,
+    TodoListModule,
+    LoginModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

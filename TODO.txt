@@ -1,0 +1,15 @@
+1. import the lists from the json by http request.
+
+3. add to the completed list the edit/save option.
+
+5. add Router to the project.
+6. User:
+    * html and design
+    * click() on the login button.
+
+    
+    * validation for non empty inputs and from the form of email-password.
+    * create UserService that will hold the function for 
+    * validation for the email and password by import the array from the json and do find().
+        UserService return neg/pos answer, if pos return an object of user.
+        login comp will react following the answer of the UserService.

@@ -11,8 +11,8 @@
                 <app-todo-list [todoListIn]="todoListOut" [completedListIn]="completedListOut"
                                 (completedTask)='onCheckClicked($event)'
                                 (uncompletedTask)='onUnCheckedClicked($event)'
-                                (deletedTask)='onDeletingClicked($event)'
-                                (update)='onUpdate($event)'></app-todo-list>
+                                (deletedTask)='onDeletingClicked($event)'>
+                </app-todo-list>
             </div>
         </div>
     </div>

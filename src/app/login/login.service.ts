@@ -2,19 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { Itodo } from '../todo';
+
+import { Iuser } from './iuser';
 
 @Injectable({
   providedIn: 'root'
 })
-export class WrapService {
 
-  private tasksTodoUrl = 'api/tasksTodo/tasksTodo.json';
+export class LoginService {
 
+  private usersUrl = 'api/users/users.json';
+  
   constructor(private http: HttpClient) { }
 
-  getTasksTodo(): Observable<Itodo[]> {
-    return this.http.get<Itodo[]>(this.tasksTodoUrl)
+  getUsers(): Observable<Iuser[]> {
+    return this.http.get<Iuser[]>(this.usersUrl)
       .pipe(
         tap(data => console.log('All: ' + JSON.stringify(data))),
         catchError(this.handleError)
@@ -35,5 +37,5 @@ export class WrapService {
     console.error(errorMessage);
     return throwError(errorMessage);
   }
-  
+
 }
